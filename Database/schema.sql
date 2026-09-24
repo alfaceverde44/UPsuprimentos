@@ -14,7 +14,7 @@ email VARCHAR(150) NOT NULL UNIQUE,
 senha_hash VARCHAR(255) NOT NULL,
 tipo ENUM('ADMIN','FUNCIONARIO') NOT NULL DEFAULT 'FUNCIONARIO',
 data_criacao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB;
+);
 -- ------------------------------------------------------------
 -- Tabela: categorias
 -- ------------------------------------------------------------
@@ -23,7 +23,7 @@ ID_categoria INT AUTO_INCREMENT PRIMARY KEY,
 nome VARCHAR(80) NOT NULL UNIQUE,
 descricao VARCHAR(255) NULL,
 data_criacao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP
-) ENGINE=InnoDB;
+);
 -- ------------------------------------------------------------
 -- Tabela: produtos
 -- Cada produto pertence a uma categoria (FK). Guarda o saldo
@@ -40,10 +40,10 @@ estoque_minimo INT NOT NULL DEFAULT 0,
 ID_categoria INT NOT NULL,
 data_criacao DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
 CONSTRAINT fk_produto_categoria
-FOREIGN KEY (id_categoria) REFERENCES categorias(id)
+FOREIGN KEY (ID_categoria) REFERENCES categoria(ID_categoria)
 ON UPDATE CASCADE
 ON DELETE RESTRICT
-) ENGINE=InnoDB;
+);
 -- ------------------------------------------------------------
 -- Tabela: movimentacoes
 -- Historico de entradas e saidas de cada produto. Registra 
@@ -65,4 +65,4 @@ CONSTRAINT fk_mov_usuario
 FOREIGN KEY (ID_usuario) REFERENCES usuario(ID_usuario)
 ON UPDATE CASCADE
 ON DELETE RESTRICT
-) ENGINE=InnoDB; 
+); 
