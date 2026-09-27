@@ -14,14 +14,14 @@ INSERT INTO categoria (nome, descricao) VALUES
 ('Papelaria', 'Material de escritorio');
 
 -- Produtos
-INSERT INTO produto (nome, descricao, preco, quantidade, estoque_minimo, id_categoria, marca) VALUES
+INSERT INTO produto (nome, descricao, preco, quantidade, estoque_minimo, ID_categoria, marca) VALUES
 ('Capacete', 'Capacete de segurança', 100.00, 20, 5, 1, 'MSA'),
 ('Furadeira Elétrica','Furadeira 820W', 550.00, 15, 1, 2, 'BOSCH'),
 ('Papel A4 500 folhas','Resma branca', 24.90, 15, 5, 3, 'CHAMEX');
 
 -- Movimentacoes de exemplo 
 -- usuario 1 = Administrador e usuario 2 = Funcionario
-INSERT INTO movimentacao (id_produto, id_usuario, tipo, quantidade, descricao) VALUES
+INSERT INTO movimentacao (ID_produto, ID_usuario, tipo, quantidade, descricao) VALUES
 (1, 1, 'ENTRADA', 100, 'Compra inicial'),
 (1, 2, 'SAIDA', 10, 'Venda balcao'),
 (2, 2, 'ENTRADA', 40, 'Reposicao'),
