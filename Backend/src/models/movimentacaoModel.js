@@ -23,15 +23,20 @@ async function buscarPorId(id) {
   return linhas[0];
 }
  
-async function criar({ ID_produto, ID_usuario, tipo, quantidade, descricao}) {
-  const [r] = await pool.query(
+async function criar(
+  { ID_produto, ID_usuario, tipo, quantidade, descricao },
+  conexao = pool
+) {
+  const [r] = await conexao.query(
     `INSERT INTO movimentacao
        (ID_produto, ID_usuario, tipo, quantidade, descricao)
      VALUES (?, ?, ?, ?, ?)`,
     [ID_produto, ID_usuario, tipo, quantidade, descricao]
   );
-  return buscarPorId(r.insertId);
+
+  return { ID_movimentacao: r.insertId };
 }
+
  
 async function excluir(id) {
   const [r] = await pool.query('DELETE FROM movimentacao WHERE ID_movimentacao = ?', [id]);
