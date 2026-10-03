@@ -15,12 +15,16 @@ async function buscarPorId(id) {
   return linhas[0];
 }
  
+
 async function criar({ nome, descricao }) {
   const [r] = await pool.query(
-    'INSERT INTO categoria (nome, descricao) VALUES (?, ?)', 
+    'INSERT INTO categoria (nome, descricao) VALUES (?, ?)',
+    [nome, descricao]
   );
+
   return { ID_categoria: r.insertId, nome, descricao };
 }
+
  
 async function atualizar(id, { nome, descricao }) {
   await pool.query(
@@ -38,4 +42,14 @@ async function excluir(id) {
   // Se for maior que 0, significa que uma categoria foi excluída.
   // Retorna true se excluiu e false se não encontrou a categoria.
 }
+
+
+module.exports = {
+  listar,
+  buscarPorId,
+  criar,
+  atualizar,
+  excluir
+};
+
  

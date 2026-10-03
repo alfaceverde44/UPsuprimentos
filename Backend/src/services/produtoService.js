@@ -55,12 +55,22 @@ async function criar(dados) {
   return produtoModel.criar(dados);
 }
  
+
 async function atualizar(id, dados) {
-  await buscar(id);
-  await validar(dados);
-  return produtoModel.atualizar(id, dados);
+  // Busca o produto antes de editar.
+  const produtoAtual = await buscar(id);
+
+  // Mantem a quantidade existente caso nao seja enviada.
+  const dadosAtualizados = {
+    ...dados,
+    quantidade: dados.quantidade ?? produtoAtual.quantidade
+  };
+
+  await validar(dadosAtualizados);
+
+  return produtoModel.atualizar(id, dadosAtualizados);
 }
- 
+
 async function excluir(id) {
   await buscar(id);
   return produtoModel.excluir(id);
